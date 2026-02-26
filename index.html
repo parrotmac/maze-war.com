@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>✌️</title><!-- wait, is that a Simpsons reference? -->
+		<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #000;
+			overflow: hidden;
+		}
+		img {
+			max-height: 95vh;
+			max-width: 95vw;
+			--mouse-x: 50%;
+			--mouse-y: 50%;
+			--spotlight-size: 220px;
+			-webkit-mask-image: radial-gradient(
+				circle var(--spotlight-size) at var(--mouse-x) var(--mouse-y),
+				rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 100%
+			);
+			mask-image: radial-gradient(
+				circle var(--spotlight-size) at var(--mouse-x) var(--mouse-y),
+				rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0) 100%
+			);
+		}
+		</style>
+	</head>
+	<body>
+		<img src="SunChips.png" />
+		<script>
+		(function() {
+			const img = document.querySelector('img');
+			document.addEventListener('mousemove', function(e) {
+				const rect = img.getBoundingClientRect();
+				img.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+				img.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+			});
+			document.addEventListener('mouseleave', function() {
+				img.style.setProperty('--mouse-x', '-1000px');
+				img.style.setProperty('--mouse-y', '-1000px');
+			});
+		})();
+		</script>
+	</body>
+</html>
